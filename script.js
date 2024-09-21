@@ -1,5 +1,11 @@
-const myLibrary = [];
 const container = document.querySelector(".wrapper");
+const newBtn = document.querySelector("#add-btn");
+
+const myLibrary = [];
+
+newBtn.addEventListener("click", () => {
+  
+});
 
 function Book(name) {
   this.name = name;
