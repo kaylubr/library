@@ -1,11 +1,11 @@
 const myLibrary = [];
 
-function Book() {
-
+function Book(name) {
+  this.name = name;
 }
 
 function addBookToLibrary() {
-  let newBook = prompt("Name of the book?");
+  let nameOfBook = prompt("New book: ");
 
-  myLibrary.push(newBook);
+  myLibrary.push(new Book(nameOfBook));
 }
