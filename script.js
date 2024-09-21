@@ -23,7 +23,7 @@ newBtn.addEventListener("click", () => {
 confirmBtn.addEventListener("click", (e) => {
   e.preventDefault();
   addBookToLibrary();
-  removeBooks(); // Remove the existing books before printing all
+  removeAllBooks(); // Remove the existing books before printing all
   displayBooks(); 
   modal.close();  
 });
@@ -42,7 +42,9 @@ function addBookToLibrary() {
   const pages = pagesInput.value;
   const isRead = isReadInput.value;
 
-  myLibrary.push(new Book(author, title, pages, isRead));
+  if (author != "" && title != "" && pages != "") {
+    myLibrary.push(new Book(author, title, pages, isRead));
+  }
 }
 
 function displayBooks() {
@@ -68,12 +70,18 @@ function displayBooks() {
     pagesSection.textContent = element.pages;
     isReadSection.textContent = element.isRead;
     removeBtn.textContent = "Remove";
+    removeBtn.setAttribute("id", "removeBtn");
     readBtn.textContent = "Read";
+    readBtn.setAttribute("id", "readBtn");
   }
 }
 
-function removeBooks() {
+function removeAllBooks() {
   while(container.firstChild) {
     container.removeChild(container.lastChild);
   }
 }
+
+
+
+
