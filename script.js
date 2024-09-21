@@ -4,4 +4,8 @@ function Book() {
 
 }
 
-function addBook
+function addBookToLibrary() {
+  let newBook = prompt("Name of the book?");
+
+  myLibrary.push(newBook);
+}
