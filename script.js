@@ -1,14 +1,21 @@
 const container = document.querySelector(".wrapper");
+const modal = document.querySelector("#modal  ");
 const newBtn = document.querySelector("#add-btn");
+const confirmBtn = document.querySelector("confirm-btn");
+const closeBtn = document.querySelector("close-btn");
 
 const myLibrary = [];
 
 newBtn.addEventListener("click", () => {
-  
+  modal.showModal();
+});
+
+confirmBtn.addEventListener("click", (e) => {
+  e.preventDefault();
 });
 
 function Book(name) {
-  this.name = name;
+  this.name = name; 
 }
 
 function addBookToLibrary() {
