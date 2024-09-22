@@ -1,10 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap');
 :root {
   --primary-dark-color: #3B3030;
   --primary-light-color: #FFF0D1;
   --secondary-dark-color: #795757;
-  --merriweather-family: "Merriweather", serif;
-  --merriweather-style: normal;
+}
+
+@font-face {
+  font-family: headerFont;
+  src: url(./fonts/PermanentMarker-Regular.woff2);
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: labelFont;
+  src: url(./fonts/Poppins-Medium.woff2);
+  font-weight: 500;
+  font-style: normal;
 }
 
 * {
@@ -22,17 +33,12 @@ body {
   align-items: center;
   gap: 1rem;
   height: 100vh;
-  font-family: var(--merriweather-family);
-  font-weight: 900;
-  font-style: var(--merriweather-style);
 }
 
 h1 {
   color: var(--primary-light-color);
+  font-family: headerFont;
   font-size: 2.6rem;
-  font-family: var(--merriweather-family);
-  font-weight: 900;
-  font-style: var(--merriweather-style);
 }
 
 .wrapper {
@@ -62,9 +68,6 @@ h1 {
   border-radius: 12px; 
   width: 165px;
   height: 200px;
-  font-family: var(--merriweather-family);
-  font-weight: 400;
-  font-style: var(--merriweather-style);
 }
 
 .wrapper button {
@@ -96,7 +99,6 @@ button:hover {
 }
 
 /* Sets font size to multiple components */
-h1,
 .wrapper > div,
 button {
   font-family: "Pixelify Sans", sans-serif;
@@ -147,6 +149,11 @@ form > select {
 form > button {
   margin-top: 5rem;
   justify-self: end;
+}
+
+form label {
+  font-family: labelFont;
+  font-size: 0.8rem;
 }
 
 ::backdrop {
