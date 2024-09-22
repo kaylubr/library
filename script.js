@@ -23,7 +23,6 @@ newBtn.addEventListener("click", () => {
 
 confirmBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  confirmBtn.toggleAttribute("disabled", "");
   addBookToLibrary();
   removeAllBooks(); // Remove the existing books before printing all
   displayBooks();
@@ -35,7 +34,7 @@ modal.addEventListener("close", () => {
   authorInput.value = "";
   titleInput.value = "";
   pagesInput.value = "";
-  isReadInput.value = "No";
+  isReadInput.value = "Unread";
 });
 
 function addBookToLibrary() {
@@ -47,7 +46,6 @@ function addBookToLibrary() {
   // Won't push the new object if the contents are empty
   if (author != "" && title != "" && pages != "") {
     myLibrary.push(new Book(author, title, pages, isRead));
-
   }
 }
 
@@ -73,7 +71,15 @@ function displayBooks() {
     authorSection.textContent = element.author;
     titleSection.textContent = element.title;
     titleSection.style.fontWeight = 900; // Make the title bold
-    pagesSection.textContent = element.pages + " page";
+
+    if (element.pages > 1) {
+      pagesSection.textContent = element.pages + " pages";
+    } else if (element.pages == 1) {
+      pagesSection.textContent = element.pages + " page";
+    } else {
+      pagesSection.textContent = "Invalid Input";
+    }
+
     isReadSection.textContent = "Status: " + element.isRead;
     isReadSection.setAttribute("class", "read-status");
     removeBtn.textContent = "Remove";
