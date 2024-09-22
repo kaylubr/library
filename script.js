@@ -8,7 +8,7 @@ const titleInput = document.querySelector("#title");
 const pagesInput = document.querySelector("#num-of-pages");
 const isReadInput = document.querySelector("#read");
 const myLibrary = [];
-let bookIndex = 0;
+let bookIndex = 0; //Identifier for each book
 
 function Book(author, title, pages, isRead) {
   this.author = author; 
@@ -44,6 +44,7 @@ function addBookToLibrary() {
   const pages = pagesInput.value;
   const isRead = isReadInput.value;
 
+  // Won't push the new object if the contents are empty
   if (author != "" && title != "" && pages != "") {
     myLibrary.push(new Book(author, title, pages, isRead));
 
@@ -51,6 +52,7 @@ function addBookToLibrary() {
 }
 
 function displayBooks() {
+  // Loop through the array to display the books
   for (const element of myLibrary) {
     const book = document.createElement('div');
     const authorSection = document.createElement('div');
@@ -73,21 +75,17 @@ function displayBooks() {
     titleSection.style.fontWeight = 900; // Make the title bold
     pagesSection.textContent = element.pages + " pages";
     isReadSection.textContent = "Have read: " + element.isRead;
+    isReadSection.setAttribute("class", "read-status");
     removeBtn.textContent = "Remove";
     removeBtn.setAttribute("id", "removeBtn");
     readBtn.textContent = "Read";
     readBtn.setAttribute("id", "readBtn");
 
-    removeBtn.addEventListener("click", (e) => {
-      let book = e.target.parentNode;
-      let index = parseInt(book.getAttribute("id"));
-      myLibrary.splice(index, 1);
-      bookIndex--;
-      container.removeChild(book);
-      handleBookId();
-    });
+    removeBtn.addEventListener("click", removeBook);
+    readBtn.addEventListener("click", changeReadStatus);
   }
 
+  // Handles the IDs of the new displayed books
   handleBookId();
 }
 
@@ -100,9 +98,31 @@ function handleBookId() {
   });
 }
 
+function removeBook(event) {
+  let book = event.target.parentNode;
+  let index = parseInt(book.getAttribute("id"));
+  myLibrary.splice(index, 1);
+  bookIndex--;
+  container.removeChild(book);
+  handleBookId();
+}
+
 function removeAllBooks() {
   while(container.firstChild) {
     container.removeChild(container.lastChild);
+  }
+}
+
+function changeReadStatus(event) {
+  let targetBook = event.target.parentNode;
+  let targetBookID = targetBook.getAttribute("id");
+  let specificBook = document.getElementById(targetBookID);
+  let readStatus = specificBook.querySelector(".read-status");
+  
+  if (readStatus.textContent === "Have Read: Yes") {
+    readStatus.textContent = "Have Read: No";
+  } else {
+    readStatus.textContent = "Have Read: Yes";
   }
 }
 
