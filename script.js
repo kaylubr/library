@@ -72,7 +72,14 @@ function displayBooks() {
     authorSection.textContent = element.author;
     titleSection.textContent = element.title;
     titleSection.style.fontWeight = 900; // Make the title bold
-    pagesSection.textContent = element.pages + " pages";
+
+    if (element.pages == 1) {
+      pagesSection.textContent = element.pages + " page";
+    } else {
+      pagesSection.textContent = element.pages + " pages";
+    }
+
+
     isReadSection.textContent = "Status: " + element.isRead;
     isReadSection.setAttribute("class", "read-status");
     removeBtn.textContent = "Remove";
