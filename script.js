@@ -55,13 +55,13 @@ function displayBooks() {
     const authorSection = document.createElement('div');
     const titleSection = document.createElement('div');
     const pagesSection = document.createElement('div');
-    const isReadSection = document.createElement('div');
+    const isReadSection = document.createElement('div');  
     const removeBtn = document.createElement('button');
     const readBtn = document.createElement('button');
     
     container.appendChild(book);
-    book.appendChild(authorSection);
     book.appendChild(titleSection);
+    book.appendChild(authorSection);
     book.appendChild(pagesSection);
     book.appendChild(isReadSection);
     book.appendChild(removeBtn);
@@ -69,8 +69,9 @@ function displayBooks() {
 
     authorSection.textContent = element.author;
     titleSection.textContent = element.title;
-    pagesSection.textContent = element.pages;
-    isReadSection.textContent = element.isRead;
+    titleSection.style.fontWeight = 900;
+    pagesSection.textContent = element.pages + " pages";
+    isReadSection.textContent = "Have read: " + element.isRead;
     removeBtn.textContent = "Remove";
     removeBtn.setAttribute("id", "removeBtn");
     readBtn.textContent = "Read";
