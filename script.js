@@ -74,7 +74,7 @@ function displayBooks() {
     titleSection.textContent = element.title;
     titleSection.style.fontWeight = 900; // Make the title bold
     pagesSection.textContent = element.pages + " pages";
-    isReadSection.textContent = "Have read: " + element.isRead;
+    isReadSection.textContent = "Status: " + element.isRead;
     isReadSection.setAttribute("class", "read-status");
     removeBtn.textContent = "Remove";
     removeBtn.setAttribute("id", "removeBtn");
@@ -119,10 +119,10 @@ function changeReadStatus(event) {
   let specificBook = document.getElementById(targetBookID);
   let readStatus = specificBook.querySelector(".read-status");
   
-  if (readStatus.textContent === "Have Read: Yes") {
-    readStatus.textContent = "Have Read: No";
+  if (readStatus.textContent === "Status: Read") {
+    readStatus.textContent = "Status: Unread";
   } else {
-    readStatus.textContent = "Have Read: Yes";
+    readStatus.textContent = "Status: Read";
   }
 }
 
