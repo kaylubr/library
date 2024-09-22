@@ -59,7 +59,7 @@ h1 {
   font-size: 12px;
   background-color: var(--secondary-dark-color);
   color: var(--primary-light-color);
-  border-radius: 8px;
+  border-radius: 12px; 
   width: 165px;
   height: 200px;
   font-family: var(--merriweather-family);

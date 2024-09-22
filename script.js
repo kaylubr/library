@@ -9,6 +9,8 @@ const pagesInput = document.querySelector("#num-of-pages");
 const isReadInput = document.querySelector("#read");
 const myLibrary = [];
 
+let bookIndex = 0;
+
 function Book(author, title, pages, isRead) {
   this.author = author; 
   this.title = title;
@@ -59,6 +61,9 @@ function displayBooks() {
     const removeBtn = document.createElement('button');
     const readBtn = document.createElement('button');
     
+    book.setAttribute("bookId", `${bookIndex}`);
+    bookIndex++;
+
     container.appendChild(book);
     book.appendChild(titleSection);
     book.appendChild(authorSection);
