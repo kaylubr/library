@@ -8,7 +8,6 @@ const titleInput = document.querySelector("#title");
 const pagesInput = document.querySelector("#num-of-pages");
 const isReadInput = document.querySelector("#read");
 const myLibrary = [];
-
 let bookIndex = 0;
 
 function Book(author, title, pages, isRead) {
@@ -25,10 +24,9 @@ newBtn.addEventListener("click", () => {
 confirmBtn.addEventListener("click", (e) => {
   e.preventDefault();
   confirmBtn.toggleAttribute("disabled", "");
-
   addBookToLibrary();
   removeAllBooks(); // Remove the existing books before printing all
-  displayBooks(); 
+  displayBooks();
   modal.close();  
 });
 
@@ -48,6 +46,7 @@ function addBookToLibrary() {
 
   if (author != "" && title != "" && pages != "") {
     myLibrary.push(new Book(author, title, pages, isRead));
+
   }
 }
 
@@ -61,9 +60,6 @@ function displayBooks() {
     const removeBtn = document.createElement('button');
     const readBtn = document.createElement('button');
     
-    book.setAttribute("bookId", `${bookIndex}`);
-    bookIndex++;
-
     container.appendChild(book);
     book.appendChild(titleSection);
     book.appendChild(authorSection);
@@ -74,14 +70,34 @@ function displayBooks() {
 
     authorSection.textContent = element.author;
     titleSection.textContent = element.title;
-    titleSection.style.fontWeight = 900;
+    titleSection.style.fontWeight = 900; // Make the title bold
     pagesSection.textContent = element.pages + " pages";
     isReadSection.textContent = "Have read: " + element.isRead;
     removeBtn.textContent = "Remove";
     removeBtn.setAttribute("id", "removeBtn");
     readBtn.textContent = "Read";
     readBtn.setAttribute("id", "readBtn");
+
+    removeBtn.addEventListener("click", (e) => {
+      let book = e.target.parentNode;
+      let index = parseInt(book.getAttribute("id"));
+      myLibrary.splice(index, 1);
+      bookIndex--;
+      container.removeChild(book);
+      handleBookId();
+    });
   }
+
+  handleBookId();
+}
+
+function handleBookId() {
+  const bookList = document.querySelectorAll(".wrapper > div");
+  bookIndex = 0;
+  bookList.forEach(book => {
+    book.setAttribute("id", `${bookIndex.toString()}`)
+    bookIndex++;
+  });
 }
 
 function removeAllBooks() {
