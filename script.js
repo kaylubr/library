@@ -23,7 +23,6 @@ newBtn.addEventListener("click", () => {
 
 confirmBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  confirmBtn.toggleAttribute("disabled", "");
   addBookToLibrary();
   removeAllBooks(); // Remove the existing books before printing all
   displayBooks();
