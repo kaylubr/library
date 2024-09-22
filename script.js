@@ -75,10 +75,11 @@ function displayBooks() {
 
     if (element.pages == 1) {
       pagesSection.textContent = element.pages + " page";
-    } else {
+    } else if (element.pages > 1){
       pagesSection.textContent = element.pages + " pages";
+    } else {
+      pagesSection.textContent = "Invalid amount of pages";
     }
-
 
     isReadSection.textContent = "Status: " + element.isRead;
     isReadSection.setAttribute("class", "read-status");
